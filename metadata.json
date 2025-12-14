@@ -1,0 +1,5 @@
+{
+  "name": "Zheng Zi",
+  "description": "A minimalist tally counter application using the traditional Chinese '正' (Zheng) character method, featuring haptic feedback and gesture controls.",
+  "requestFramePermissions": []
+}
