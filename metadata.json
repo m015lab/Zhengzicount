@@ -1,5 +1,5 @@
 {
-  "name": "Zheng Zi",
-  "description": "A minimalist tally counter application using the traditional Chinese '正' (Zheng) character method, featuring haptic feedback and gesture controls.",
+  "name": "正字计数",
+  "description": "一个极简风格的计数器应用，使用中国传统的“正”字计数法，支持触觉反馈和手势操作。",
   "requestFramePermissions": []
 }
