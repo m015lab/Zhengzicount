@@ -8,9 +8,14 @@ const FlyingChar = ({ startRect, targetRect, onComplete }: { startRect: DOMRect,
   const [isLanded, setIsLanded] = useState(false);
 
   useEffect(() => {
-    // Trigger the animation in the next frame to ensure the initial position is rendered
+    // Trigger the animation. Using double requestAnimationFrame ensures the browser 
+    // has painted the initial state (at startRect) before applying the target state.
+    // This prevents the animation from skipping the start position, which can happen 
+    // on the very first render or during layout shifts.
     requestAnimationFrame(() => {
-      setIsLanded(true);
+      requestAnimationFrame(() => {
+        setIsLanded(true);
+      });
     });
 
     const timer = setTimeout(onComplete, 700); 
@@ -32,7 +37,7 @@ const FlyingChar = ({ startRect, targetRect, onComplete }: { startRect: DOMRect,
       }}
       className="text-gray-900 dark:text-stone-100" 
     >
-      <ZhengChar strokes={5} size="large" className="w-full h-full !m-0" />
+      <ZhengChar strokes={5} size="large" className="!w-full !h-full !m-0" />
     </div>
   );
 };
@@ -221,7 +226,7 @@ export default function App() {
       >
         <div 
           ref={historyListRef}
-          className="flex flex-wrap content-start justify-center gap-2 opacity-60 text-gray-700 dark:text-stone-500 transition-colors duration-300"
+          className="flex flex-wrap content-start justify-center gap-2 opacity-60 text-gray-700 dark:text-stone-500 transition-colors duration-300 min-h-[2.5rem]"
         >
           {Array.from({ length: fullChars }).map((_, i) => {
             // Check if this is the item currently being animated into existence
